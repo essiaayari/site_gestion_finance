@@ -1,0 +1,81 @@
+<!-- le formulare d'ajout -->
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
+        <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+          <h2 id="heading">Formulaire stock</h2>
+          <p>Détails sur le stock</p>
+          <form id="msform">
+            <!-- progressbar -->
+            <ul id="progressbar">
+              <li id="personal"><strong></strong></li>
+              <li id="personal"><strong></strong></li>
+              <li id="confirm"><strong></strong></li>
+
+            </ul>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div> <br>
+            <!-- fieldsets -->
+            
+         
+
+            <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Informations génerales:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 1 - 3</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">nom_produit: *</label>
+                  <input type="text" name="nom_produit" [(ngModel)]="nom_produit" placeholder="nom_produit" />
+                  <label class="fieldlabels">quantite_total: *</label>
+                  <input type="text" name="quantite_total" [(ngModel)]="quantite_total" placeholder="quantite_total" />
+                  <label class="fieldlabels">quantite_restante: *</label>
+                  <input type="text" name="quantite_restante" [(ngModel)]="quantite_restante" placeholder="quantite_restante" />
+                 
+                  <label class="fieldlabels">prix_unitaire: *</label>
+                  <input type="email" name="prix_unitaire" [(ngModel)]="prix_unitaire" placeholder="prix_unitaire" />
+                  <label class="fieldlabels">prix_total: *</label>
+                  <input type="text" name="prix_total" [(ngModel)]="prix_total" placeholder="prix_total" />
+  
+                 
+                  <label class="fieldlabels">etat_produit: *</label>
+
+                  <input type="button" [class.selected]="statut"  value="en stock"  (click)="selectType('en stock')"  />
+                  <input type="button" [class.selected]="statut"   value="hors stock" (click)="selectType('hors stock')"  />
+                </div>
+                <input type="button" name="next" class="next action-button" value="submit" (click)="addstock() "/>
+              </fieldset>
+
+
+
+            <fieldset>
+              <div class="form-card">
+               
+                </div> <br><br>
+                <div class="row justify-content-center" >
+                </div> <br><br>
+                <div class="row justify-content-center">
+                  <div class="col-7 text-center">
+                    <h5 class="purple-text text-center" >stock ajouter avec succès</h5>
+                  </div>
+                  <input type="button"   class="next action-button" (click)="closeForm()"  value="Quitter" />
+                </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+
+  
+ 

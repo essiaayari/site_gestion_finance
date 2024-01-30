@@ -1,0 +1,174 @@
+<app-dashboard></app-dashboard>
+
+
+<!-- tableau des clients  -->
+<div class="c">
+  <div class="report-container"> 
+    <div class="report-header"> 
+      <h1 class="recent-Articles">détails sur les fournisseurs</h1> 
+    </div> 
+  
+    <div class="report-body"> 
+      <div class="report-topic-heading"> 
+        <th class="t-op">nom_entreprise</th> 
+        <th class="t-op">matricule_fisc</th> 
+        <th class="t-op">num_tel</th> 
+        <th class="t-op">adresse</th> 
+        <th class="t-op">site_web</th> 
+        <th class="t-op">adresse_mail</th> 
+        <th class="t-op">supprmier</th> 
+        <th class="t-op">modifier</th> 
+        
+
+
+      </div> 
+  
+      <div class="items" *ngFor="let f of fournisseurlist"> 
+        <tr class="item1"> 
+          <td class="t-op-nextlvl">{{f.nom}}</td> 
+          <td class="t-op-nextlvl">{{f.matricule_fisc}}</td> 
+          <td class="t-op-nextlvl">{{f.num_tel_ent}}</td> 
+          <td class="t-op-nextlvl ">{{f.adresse}}</td> 
+          <td class="t-op-nextlvl ">{{f.site_web}}</td> 
+          <td class="t-op-nextlvl">{{f.adresse_mail}}</td> 
+          <button class="view" (click)="deletefournisseur(f)"><i class="fa fa-trash" aria-hidden="true"></i>
+            </button> 
+          <button class="view"(click)="updateForm(f)"><i class="fa fa-pencil" aria-hidden="true"></i>
+            </button> 
+          </tr> 
+        
+       
+  
+      </div> 
+      <br>
+      <button class="view" (click)="openfournisseurFormModal()"> ajouter                      <i class="fas fa-user-plus fa-xs"></i>
+      </button> 
+    </div> 
+
+
+   <!-- pour la modification du fournisseur -->
+
+<div class="container-fluid" *ngIf="showform2">
+  <div class="row justify-content-center">
+    <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
+      <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+        <h2 id="heading">Formulaire fournisseur</h2>
+        <p>Détails sur le fournisseur</p>
+        <form id="msform">
+          <!-- progressbar -->
+          <ul id="progressbar">
+            <li class="active" id="account"><strong></strong></li>
+            <li id="personal"><strong></strong></li>
+            <li id="personal"><strong></strong></li>
+            <li id="confirm"><strong></strong></li>
+
+          </ul>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+          </div> <br>
+          <!-- fieldsets -->
+          
+          <fieldset>
+            <div class="form-card">
+              <div class="row">
+                <div class="col-7">
+                  <h2 class="fs-title">détails sur l'entreprise:</h2>
+                </div>
+                <div class="col-5">
+                  <h2 class="steps">Step 1 - 4</h2>
+                </div>
+              </div>
+              <label class="fieldlabels">Nom_entreprise: *</label>
+                <input type="text" name="nom" [(ngModel)]="nom" placeholder="nom" />
+                <label class="fieldlabels">matricule_fisc: *</label>
+                <input type="text" name="nmatricule_fiscom" [(ngModel)]="matricule_fisc" placeholder="matricule fiscale" />
+
+                <label class="fieldlabels">Réference: *</label>
+                <input type="text" name="ref" [(ngModel)]="ref" placeholder="réference" />
+
+                <label class="fieldlabels">num_tel: *</label>
+                <input type="text" name="num_tel_ent" [(ngModel)]="num_tel_ent" placeholder="num tel" />
+              
+                <label class="fieldlabels">site_web: *</label>
+                <input type="text" name="site_web" [(ngModel)]="site_web" placeholder="num tel" />
+
+                <label class="fieldlabels">adresse_mail: *</label>
+                <input type="text" name="adresse_mail" [(ngModel)]="adresse_mail" placeholder="adresse_mail" />
+
+            
+            </div>
+            <input type="button" name="next" class="next action-button" value="Next" (click)="nextStep()" />
+          </fieldset>
+
+          <fieldset>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title">Personne à contacter:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 2 - 4</h2>
+                  </div>
+                </div>
+                <label class="fieldlabels">Nom_complét: *</label>
+                <input type="text" name="nom_pers" [(ngModel)]="nom_pers" placeholder="nom et prenom" />
+                <label class="fieldlabels">num_tel: *</label>
+                <input type="text" name="num_tel_pers" [(ngModel)]="num_tel_pers" placeholder="num_tel" />
+                <label class="fieldlabels">Civilité: *</label>
+                <select name="civilite"  [(ngModel)]="civilite">
+                  <option value="Homme">Homme</option>
+                  <option value="Femme">Femme</option>
+                </select><br><br>
+                
+              </div>
+              <input type="button" name="next" class="next action-button" value="Next" (click)="nextStep()" />
+              <input type="button" name="previous" class="previous action-button-previous" value="Previous" (click)="previousStep()" />
+            </fieldset>
+
+
+          <fieldset>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title"> adresses:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 3 - 4</h2>
+                  </div>
+                </div>
+                
+                <label class="fieldlabels">pays: *</label>
+                <input type="text" name="pays" [(ngModel)]="pays" placeholder="pays" />
+                <label class="fieldlabels">région: *</label>
+                <input type="text" name="region" [(ngModel)]="region" placeholder="région " />
+                <label class="fieldlabels">code_postal: *</label>
+                <input type="text" name="code_postal" [(ngModel)]="code_postal" placeholder="code_postal " />
+                <label class="fieldlabels">adresse_complete: *</label>
+                <input type="text" name="adresse" [(ngModel)]="adresse" placeholder="code_postal " />
+                
+              </div>
+              <input type="button" name="next" class="next action-button" value="update" (click)="updatefournisseur() "/>
+              <input type="button" name="previous" class="previous action-button-previous" value="Previous" (click)="previousStep()" />
+        </fieldset>
+          <fieldset>
+            <div class="form-card">
+             
+              </div> <br><br>
+              <div class="row justify-content-center" >
+              </div> <br><br>
+              <div class="row justify-content-center">
+                <div class="col-7 text-center">
+                  <h5 class="purple-text text-center" >fournisseur modifier avec succès</h5>
+                </div>
+                <input type="button" name="update" class="next action-button" value="fermer"  (click)="toggleForm2()" />
+              </div>
+          </fieldset>
+        </form>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
+  </div> 
+</div>

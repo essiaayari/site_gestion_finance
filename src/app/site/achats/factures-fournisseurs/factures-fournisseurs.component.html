@@ -1,0 +1,79 @@
+<app-dashboard></app-dashboard>
+
+<div class="c">
+  <div class="report-container"> 
+  <div class="report-header"> 
+    <h1 class="recent-Articles">détails sur les factures des fournisseurs</h1> 
+  </div>   
+
+  <div class="report-body"> 
+    <div class="report-topic-heading">     
+  
+          <th scope="col">ref_facture</th>
+          <th scope="col">nom_fournisseur</th>
+          <th scope="col">nom_produit</th>
+          <th scope="col">honoraires</th>
+          <th scope="col">statut</th>
+          <th scope="col">methode_payement</th>
+          <th scope="col">supprimer</th>
+          <th scope="col">modifier</th>
+
+  
+    </div>
+  
+      <div  *ngFor="let f of FactureFournisseurlist">
+        <div>
+          <tr class="item1">
+          <td class="t-op-nextlvl" >{{f.ref_facture}}</td>
+          <td class="t-op-nextlvl">{{f.nom_fournisseur}}</td>
+          <td class="t-op-nextlvl">{{f.nom_produit}}</td>
+          <td class="t-op-nextlvl">{{f.total_ttc}}</td>
+          <td class="t-op-nextlvl">{{f.methode_payement}}</td>
+        <button  class="view" (click)="deletefacture_fournisseur(f)"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+  
+         <button class="view"(click)="updateForm(f)"><i class="fa fa-pencil" aria-hidden="true"></i>
+         </button> 
+  
+  
+  
+        </tr>
+       
+      </div>
+    </div> 
+    <br>
+    <button class="view" (click)="openClientfactureFormModal()"> ajoute                    <i class="fas fa-user-plus fa-xs"></i>
+    </button> 
+  </div> 
+  
+
+  
+  
+  <!-- pour la modification  -->
+  <!-- <form *ngIf="showform2" (ngSubmit)="updatefacture_fournisseur()">
+
+    <label>ref_facture:</label>
+    <input type="text"  name="ref_facture" [(ngModel)]="ref_facture">
+  
+    <label >nom_fournisseur:</label>
+    <input type="text"  name="nom_consultant" [(ngModel)]="nom_fournisseur">
+   
+  
+   
+    <label >honoraires:</label>
+    <input type="text"  name="honoraires" [(ngModel)]="honoraires">
+  
+
+    <label >statut:</label>
+    <input type="text"  name="statut" [(ngModel)]="statut">
+
+    
+    <label >methode_payement:</label>
+    <input type="text"  name="methode_payement" [(ngModel)]="methode_payement">
+
+    <button type="submit">update now </button>
+  
+  </form>
+  
+    
+  </div>
+   -->

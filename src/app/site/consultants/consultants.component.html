@@ -1,0 +1,179 @@
+<app-dashboard></app-dashboard>
+
+<div class="c">
+  <div class="report-container"> 
+    <div class="report-header"> 
+      <h1 class="recent-Articles">détails sur les consultants</h1>   
+    </div> 
+    <div class="report-body"> 
+      <div class="report-topic-heading"> 
+          <th class="t-op">nom</th>
+          <th class="t-op">prénom</th>
+          <th class="t-op">civilité</th>
+          <th class="t-op">type_consultant</th>
+          <th class="t-op">adresse_mail</th>
+          <th class="t-op">num_tel</th>
+          <th class="t-op">adresse</th>
+          <th class="t-op">facture_cconsultant</th>
+          <th class="t-op">supprmier</th> 
+          <th class="t-op">modifier</th> 
+          
+          
+        </div> 
+
+        <div class="items" *ngFor="let c of consultantlist">
+          <tr class="item1"> 
+
+          <td class="t-op-nextlvl">{{c.nom}}</td>
+          <td class="t-op-nextlvl">{{c.prenom}}</td>
+          <td class="t-op-nextlvl">{{c.civilite}}</td>
+          <td class="t-op-nextlvl">{{c.type_consultant}}</td>
+
+          <td class="t-op-nextlvl">{{c.adresse_mail}}</td>
+          <td class="t-op-nextlvl">{{c.num_tel}}</td>
+          <td class="t-op-nextlvl">{{c.lieu_hab}}</td>
+          <td class="t-op-nextlvl">{{c.ref_facture}}</td>
+          <button class="view" (click)="deleteconsultant(c)"><i class="fa fa-trash" aria-hidden="true"></i>
+          </button> 
+        <button class="view"(click)="updateForm(c)"><i class="fa fa-pencil" aria-hidden="true"></i>
+          </button> 
+  
+        </tr>
+       
+      </div> 
+      <br>
+
+  
+      <button class="view" (click)="openconsultantFormModal()"> ajouter                      <i class="fas fa-user-plus fa-xs"></i>
+      </button> 
+    </div> 
+
+  <!-- pour la modification  -->
+
+  <div class="container-fluid" *ngIf="showform2">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
+        <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+          <h2 id="heading">Formulaire consultant</h2>
+          <p>Détails sur le consultant</p>
+          <form id="msform">
+            <!-- progressbar -->
+            <ul id="progressbar">
+              <li class="active" id="account"><strong></strong></li>
+              <li id="personal"><strong></strong></li>
+              <li id="personal"><strong></strong></li>
+              <li id="confirm"><strong></strong></li>
+  
+            </ul>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div> <br>
+            <!-- fieldsets -->
+            
+            <fieldset>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title">Type consultant:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 1 - 4</h2>
+                  </div>
+                </div>
+                <input type="button" [class.selected]="type_consultant"  value="coach"  (click)="selectType('coach')"  />
+                <input type="button" [class.selected]="type_consultant"   value="formateur" (click)="selectType('formateur')"  />
+                
+            
+              </div>
+              <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+  
+            <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Informations génerales:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 2 - 4</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">Nom: *</label>
+                  <input type="text" name="nom" [(ngModel)]="nom" placeholder="Nom" />
+                  <label class="fieldlabels">Prénom: *</label>
+                  <input type="text" name="prenom" [(ngModel)]="prenom" placeholder="Prénom" />
+                  <label class="fieldlabels">identifiant_unique: *</label>
+                  <input type="text" name="nom" [(ngModel)]="id_unique" placeholder="id" />
+                  <label class="fieldlabels">Civilité: *</label>
+                  <select name="civilite"  [(ngModel)]="civilite">
+                    <option value="Homme">Homme</option>
+                    <option value="Femme">Femme</option>
+                  </select><br><br>
+                  <label class="fieldlabels">Adresse Mail: *</label>
+                  <input type="email" name="adresse_mail" [(ngModel)]="adress_mail" placeholder="Adresse Mail" />
+                  <label class="fieldlabels">Num_tel: *</label>
+                  <input type="text" name="num_tel" [(ngModel)]="num_tel" placeholder="Numéro Tél" />
+                  <label class="fieldlabels">Ref_facture: *</label>
+                  <input type="text" name="ref_facture" [(ngModel)]="ref_facture" placeholder="Ref_facture  " />
+                </div>
+                <input type="button" name="next" class="next action-button" value="Next" (click)="nextStep()" />
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous" (click)="previousStep()" />
+              </fieldset>
+  
+  
+            <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title"> adresses:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 3 - 4</h2>
+                    </div>
+                  </div>
+                  
+                  <label class="fieldlabels">pays: *</label>
+                  <input type="text" name="pays" [(ngModel)]="pays" placeholder="pays" />
+                  <label class="fieldlabels">région: *</label>
+                  <input type="text" name="region" [(ngModel)]="region" placeholder="région " />
+                  <label class="fieldlabels">code_postal: *</label>
+                  <input type="text" name="code_postal" [(ngModel)]="code_postal" placeholder="code_postal " />
+                  <label class="fieldlabels">adresse_compléte: *</label>
+                  <input type="text" name="lieu_hab" [(ngModel)]="lieu_hab" placeholder="adresse_compléte " />
+                  
+                </div>
+                <input type="button" name="next" class="next action-button" value="submit" (click)="updateconsultant() "/>
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous" (click)="previousStep()" />
+              </fieldset>
+  
+            <fieldset>
+              <div class="form-card">
+               
+                </div> <br><br>
+                <div class="row justify-content-center" >
+                </div> <br><br>
+                <div class="row justify-content-center">
+                  <div class="col-7 text-center">
+                    <h5 class="purple-text text-center" >consultant modifier avec succès</h5>
+                  </div>
+                  <input type="button" name="update" class="next action-button" value="fermer"  (click)="toggleForm2()" />
+                </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+  <!-- le formulare de modification -->
+
+
+
+
+
+
+
+
+
+

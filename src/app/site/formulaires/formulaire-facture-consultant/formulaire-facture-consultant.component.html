@@ -1,0 +1,190 @@
+<div #invoiceContainer>
+    <div class="py-4">
+        <div class="px-14 py-6">
+          <table class="w-full border-collapse border-spacing-0">
+            <tbody>
+              <tr>
+                <td class="w-full align-top">
+                  <div>
+                    <img src="assets\logo.png" />       </div>
+                </td>
+    
+                <td class="align-top">
+                  <div class="text-sm">
+                    <table class="border-collapse border-spacing-0">
+                      <tbody>
+                        <tr>
+                          <td class="border-r pr-4">
+                            <div>
+                              <p class="whitespace-nowrap text-slate-400 text-right">Date</p>
+                              <p class="whitespace-nowrap font-bold text-main text-right">{{currentDate|date}}</p>
+                            </div>
+                          </td>
+                          <td class="pl-4">
+                            <div>
+                              <p class="whitespace-nowrap text-slate-400 text-right">Ref_facture #</p>
+                              <input type="text" class=" font-bold text-main text-right" name="ref_facture"[(ngModel)]="ref_facture" placeholder="entrer la ref"/>
+                            </div>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <div class=" px-14 py-6 text-sm">
+          <table class="w-full border-collapse border-spacing-0">
+            <tbody>
+              <tr >
+                <td class="w-1/2 align-top">
+                  <div class="text-sm text-neutral-600">
+                    <p class="font-bold">détails du consultant </p>
+                    <label>nom_consultant</label>
+                    <select [(ngModel)]="selectedConsultantId" (change)="onConsultantChange()">
+                      <option *ngFor="let c of ConsultantList" [value]="c.idcons">{{ c.nom }} {{ c.prenom }}</option>
+                    </select><br>
+    <label >Email:</label>
+    {{ selectedConsultant?.adresse_mail }}<br>
+    <label>Adresse:</label>
+    {{ selectedConsultant?.lieu_hab }}<br>
+    <label>Num_tel:</label>
+    {{ selectedConsultant?.num_tel }}
+    
+                  </div>
+                </td>
+    
+                <td class="w-1/2 align-top text-right" >
+                  <div *ngFor="let c of data_company" class="text-sm text-neutral-600">
+                    <p class="font-bold">détails de l'entreprsie</p>
+                    <p>numero: +{{c.num_tel}}</p>
+                    <p>email: {{c.mail}}</p>
+                    <p>{{c.adresse1}}</p>
+                    <p>{{c.adresse2}}</p>
+                    <p>{{c.adresse3}}</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div><br><br>
+        <div class="df">
+            <strong>details facture</strong> 
+        </div><br>
+        <div class="px-14 py-10 text-sm text-neutral-700">
+          <table class="w-full border-collapse border-spacing-0">
+            <thead>
+               
+              <tr>
+                <td class="border-b-2 border-main pb-3 pl-3 font-bold text-main">Nom_service</td>
+                <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold text-main">activite</td>
+                <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold text-main">nombre</td>
+                <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold text-main">honoraire/h en HT</td>
+                <td class="border-b-2 border-main pb-3 pl-2 text-center font-bold text-main">total Honoraire en HT</td>
+    
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border-b py-3 pl-3">
+                    <select name="description" [(ngModel)]="description">
+                        <option>coaching</option>
+                        <option>formation</option>
+                        <option>profiling</option>
+                    </select>
+                </td>
+                <td class="border-b py-3 pl-2">
+                  <input type="text" name="activite" [(ngModel)]="activite">
+              </td>
+    
+                <td class="border-b py-3 pl-2">
+                    <input type="number" name="nombre" [(ngModel)]="nombre">
+                </td>
+                <td class="border-b py-3 pl-2">
+                    <input type="number" name="honoraire_h_ht" [(ngModel)]="honoraire_h_ht">
+                </td>
+    
+                <td class="border-b py-3 pl-2">
+                  <input type="number" name="totale_honoraire_ht" [(ngModel)]="totale_honoraire_ht">
+              </td>
+    
+             
+             
+              </tr>
+                <td colspan="7">
+                  <table class="w-full border-collapse border-spacing-0">
+                    <tbody>
+                      <tr>
+                        <td class="w-full"></td>
+                        <td>
+                          <table class="w-full border-collapse border-spacing-0">
+                            <tbody>
+                            
+                                  <tr>
+                                    <td class="p-3">
+                                      <div class="whitespace-nowrap text-slate-400">timbre_fisc:</div>
+                                    </td>
+                                    <td class="p-3 text-right">
+                                      <div class="whitespace-nowrap font-bold text-main"> <input type="number" name="timbre_fisc" [(ngModel)]="timbre_fisc" >
+                                      </div>
+                                    </td>
+                                  </tr>
+    
+                                  <tr>
+                                    <td class="bg-main p-3">
+                                      <div class="whitespace-nowrap font-bold text-white"> total T.T.C:</div>
+                                    </td>
+                                    <td class="bg-main p-3 text-right">
+                                      <div class="whitespace-nowrap font-bold text-white" >{{ total_ttc }} DT</div>
+                                    </td>
+                                  </tr>
+      
+                                  
+                                
+                    </tbody>
+                  </table>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </td>
+    </tbody>
+    </table>
+    </div>
+    
+       <!-- <td class="border-b py-3 pl-2 text-center">
+                    <select name="statut" [(ngModel)]="statut">
+                        <option>payé</option>
+                        <option>en cours</option>
+                        <option>non payé</option>
+                    </select>
+                </td>  -->
+    
+    <!-- pour plus de details sur le payement -->
+    <label class="pb-3 pl-3 font-bold text-main" (click)="toggleDetails()">methode_payement: </label>
+    <select name="methode_payement" [(ngModel)]="methode_payement"> 
+        <option>cache</option>
+        <option>chéque</option>
+      </select>
+    <div  class="px-14 text-sm text-neutral-700">
+     
+     
+
+    </div>
+    <button class="b" type="submit" (click)="addfacture_consultant()">ajouter facture </button>
+   <!-- <div class="signature">
+    Signature
+   </div>  -->
+        </div>
+        <!-- <button (click)="printInvoice()">Print Invoice</button> -->
+  
+  
+  
+  
+  
+    </div>
+    
+   

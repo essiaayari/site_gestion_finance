@@ -1,0 +1,107 @@
+<!-- le formulare d'ajout -->
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
+        <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+          <h2 id="heading">Formulaire service</h2>
+          <p>Détails sur le service</p>
+          <form id="msform">
+            <!-- progressbar -->
+            <ul id="progressbar">
+              <li class="active" id="account"><strong></strong></li>
+              <li id="personal"><strong></strong></li>
+              <li id="personal"><strong></strong></li>
+              <li id="confirm"><strong></strong></li>
+
+            </ul>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div> <br>
+            <!-- fieldsets -->
+            
+            <fieldset>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title">Type service:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 1 - 4</h2>
+                  </div>
+                </div>
+                <input type="button" [class.selected]="type_service"  value="coaching"  (click)="selectType('coaching')"  />
+                <input type="button" [class.selected]="type_service"   value="formation" (click)="selectType('formation')"  />
+                <input type="button" [class.selected]="type_service"   value="profiling" (click)="selectType('profiling')"  />
+
+                
+            
+              </div>
+              <input type="button" name="next" class="next action-button" value="Next" />
+            </fieldset>
+
+            <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Information génerale:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 2 - 4</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">nom_service: *</label>
+                  <input type="text" name="nom_service" [(ngModel)]="nom_service" placeholder="nom_service" />
+                  <label class="fieldlabels">prix_unitaire: *</label>
+                  <input type="number" name="prix_unitaire" [(ngModel)]="prix_unitaire" placeholder="prix_unitaire" />
+                  <label class="fieldlabels">tva: *</label>
+                  <input type="number" name="nom" [(ngModel)]="tva" placeholder="tva" />
+                 
+                  
+                  <label class="fieldlabels">date_debut: *</label>
+                  <input type="date" name="date_debut" [(ngModel)]="date_debut"  />
+                  <label class="fieldlabels">date_fin: *</label>
+                  <input type="date" name="date_fin" [(ngModel)]="date_fin"  />
+
+                  <label class="fieldlabels">nb_heures: *</label>
+                  <input type="number" name="nb_heures" [(ngModel)]="nb_heures"  />
+
+                  <label class="fieldlabels">nb_participants: *</label>
+                  <input type="number" name="nb_participants" [(ngModel)]="nb_participants"  />
+
+                </div>
+                <input type="button" name="next" class="next action-button" value="submit" (click)="addservice() "/>
+                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+
+              </fieldset>
+
+
+        
+
+            <fieldset>
+              <div class="form-card">
+               
+                </div> <br><br>
+                <div class="row justify-content-center" >
+                </div> <br><br>
+                <div class="row justify-content-center">
+                  <div class="col-7 text-center">
+                    <h5 class="purple-text text-center" >service créé avec succès</h5>
+                  </div>
+                  <input type="button"   class="next action-button" (click)="closeForm()"  value="Quitter" />
+                </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+   <!-- le formulare de modification -->
+
+
+
+
+  
+ 

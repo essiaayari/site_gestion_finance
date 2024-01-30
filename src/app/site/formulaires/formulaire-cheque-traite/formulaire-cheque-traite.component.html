@@ -1,0 +1,106 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-10 col-md-10 col-lg-8 col-xl-6 text-center p-0 mt-3 mb-2">
+        <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+          <h2 id="heading">formulaire  chéque/traite</h2>
+          <p>Détails sur les chéque/traite</p>
+          <form id="msform"  >
+            <!-- progressbar -->
+            <ul id="progressbar">
+              <li class="active" id="account"><strong></strong></li>
+              <li id="personal"><strong></strong></li>
+              <li id="personal"><strong></strong></li>
+              <li id="confirm"><strong></strong></li>
+
+            </ul>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div> <br>
+            <!-- fieldsets -->
+            
+            <fieldset>
+              <div class="form-card">
+                <div class="row">
+                  <div class="col-7">
+                    <h2 class="fs-title">Mode:</h2>
+                  </div>
+                  <div class="col-5">
+                    <h2 class="steps">Step 1 - 4</h2>
+                  </div>
+                </div>
+                <input type="button" [class.selected]="type"  value="Emis"  (click)="selectType('Emis')"  />
+                <input type="button" [class.selected]="type"   value="Reçu" (click)="selectType('Reçu')"  />
+                
+            
+              </div>
+              <input type="button" name="next" class="next action-button" value="Next" (click)="nextStep()" />
+            </fieldset>
+            <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Mode:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 2 - 4</h2>
+                    </div>
+                  </div>
+                  <input type="button" [class.selected]="type"  value="Chéque"  (click)="selectType('Chéque')"  />
+                  <input type="button" [class.selected]="type"   value="Traite" (click)="selectType('Traite')"  />
+                  
+              
+                </div>
+                <input type="button" name="next" class="next action-button" value="Next" (click)="nextStep()" />
+              </fieldset>  
+
+            <fieldset>
+                <div class="form-card">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="fs-title">Information génerale:</h2>
+                    </div>
+                    <div class="col-5">
+                      <h2 class="steps">Step 3- 4</h2>
+                    </div>
+                  </div>
+                  <label class="fieldlabels">nom_fournisseur *</label>
+                  <select name="nom_fournisseur" [(ngModel)]="nom_fournisseur">
+                    <option> </option>
+                  </select>
+                  <label class="fieldlabels">nombre_cheque: *</label>
+                  <input type="number" name="nombre_cheque" [(ngModel)]="nombre_cheque" />
+                  <label class="fieldlabels">Montant: *</label>
+                  <input type="number" name="montant_cheque" [(ngModel)]="montant_cheque" />
+                  <label class="fieldlabels">num_cheque: *</label>
+                  <input type="number" name="num_cheque" [(ngModel)]="num_cheque"  />
+                  <label class="fieldlabels">date_echeance: *</label>
+                  <input type="date" name="date_echeance" [(ngModel)]="date_echeance"  />
+
+                  <label class="fieldlabels">date_reglement *</label>
+                  <input type="date" name="date_reglement" [(ngModel)]="date_reglement"  />
+                              
+                </div>
+                <input type="button" name="next" class="next action-button" value="ajouter" (click)="addcheque_traite() "/>
+    <input type="button" name="previous" class="previous action-button-previous" value="Previous" (click)="previousStep()" />
+
+              </fieldset>
+
+
+            <fieldset>
+              <div class="form-card">
+               
+                </div> <br><br>
+                <div class="row justify-content-center" >
+                </div> <br><br>
+                <div class="row justify-content-center">
+                  <div class="col-7 text-center">
+                    <h5 class="purple-text text-center" >cheque/traite ajouter avec succès</h5>
+                  </div>
+                  <input type="button" name="update" class="next action-button" value="fermer"  (click)="toggleForm2()" />
+                    </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
